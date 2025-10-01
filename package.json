@@ -1,0 +1,21 @@
+{
+  "name": "womenbrain---backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "Ângela Carvalho",
+  "license": "ISC",
+  "description": "MVP de um projeto open source que irá hospedar livros e artigos de mulheres negras",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.3",
+    "uuid": "^13.0.0"
+  }
+}
