@@ -1,21 +1,31 @@
 # WomenBrain
 
-## Context
+## Contexto
 
-This is the backend part of the WomenBrain project.
+Esse projeto surgiu da necessidade que temos de encontrar centralizado livros e artigos de mulheres negras, seja na área de tecnologia ou em outras áreas do conhecimento. A ideia é que possamos contribuir com a construção de um banco de dados colaborativo, onde qualquer pessoa possa adicionar livros e artigos escritos por mulheres negras.
 
-## Installation
+## Instalação
 
-1. Clone the repository
-2. Run `npm install` to install the dependencies
+1. Clone este repositório
+2. Execute `npm install` para instalar as dependências
 
-## Usage
+## Uso
 
-To start the server, run:
+Para iniciar o servidor, execute:
 
 ```
 npm start
 ```
+
+ou 
+
+```
+npm run dev
+```
+
+## Decisões Técnicas
+
+Utilizei Nodejs e Express para construir a API, e MongoDB como banco de dados para armazenar as informações dos livros. A escolha dessas tecnologias se deu pela facilidade de uso, escalabilidade e pela vasta comunidade de suporte.
 
 ## Documentação da API
 
@@ -41,13 +51,13 @@ A API possui os seguintes endpoints:
 
 ### Listando livros (GET /books)
 
-![alt text](image-3.png)
+![Exemplo de uso da rota de listagem de livros](examplerotagetbooks.png)
 
 
 ### Atualizando um livro (PATCH /books/:id)
 
 Antes da atualização: 
-![alt text](image.png)
+![alt text](examplerotapatch.png)
 
 ```json
 {
@@ -56,7 +66,7 @@ Antes da atualização:
 ```
 
 Depois da atualização:
-![alt text](image-1.png)
+![Exemplo de uso da rota de atualização de livros](afterpatchroute.png)
 
 ```json
 {
@@ -74,7 +84,7 @@ Ao deletar um livro, você verá a seguinte tela:
 }
 ```
 
-![alt text](image-2.png)
+![alt text](examplerotadeletebook.png)
 
 ## Author
 
