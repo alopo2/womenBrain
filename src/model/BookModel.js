@@ -5,6 +5,13 @@ const bookSchema = new mongoose.Schema({
   author: { type: String, required: true },
   genre: { type: String, required: true },
   publishedYear: { type: Date, required: true },
+  file: {
+    url: { type: String },         
+    name: { type: String },          
+    type: { type: String },          
+    uploadedAt: { type: Date, default: Date.now },
+    size: { type: Number }
+  }
 });
 
 const Book = mongoose.model('Book', bookSchema);

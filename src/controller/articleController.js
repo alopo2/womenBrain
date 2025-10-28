@@ -1,1 +1,0 @@
-import articleService from '../service/articleServices.js';

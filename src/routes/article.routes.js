@@ -1,1 +1,0 @@
-import articleController from '../controller/articleController.js';
