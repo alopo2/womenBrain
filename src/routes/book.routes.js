@@ -1,9 +1,10 @@
 import bookController from '../controller/bookController.js';
 import express from 'express';
+import upload from '../middlewares/multerConfig.js';
 
 const bookRoutes = express.Router();
 
-bookRoutes.post('/', bookController.createBookController);
+bookRoutes.post('/', upload.single('file'), bookController.createBookController);
 bookRoutes.get('/', bookController.getAllBooksController);
 //bookRoutes.get('/:id', bookController.getBookById); Implementar depois
 bookRoutes.patch('/:id', bookController.updateBookByIdController);

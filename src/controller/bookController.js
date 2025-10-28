@@ -1,17 +1,24 @@
 import bookService from '../service/bookService.js';
+import { uploadFileToGCS } from '../service/fileService.js';
 
 const createBookController = async (req, res) => {
   try {
-    const newBook = await bookService.createBook(req.body);
-    return res.status(201).json({
-      message: '📚 Livro criado com sucesso!',
-      data: newBook
-    });
-  } catch (error) {
-    if (error.message.includes('já está cadastrado')) {
-      return res.status(400).json({ message: error.message });
+    
+    let fileInfo = null;
+
+    if (req.file) {
+      fileInfo = await uploadFileToGCS(req.file);
     }
-    return res.status(500).json({ message: 'Erro ao criar um novo livro', error: error.message });
+
+    const newBook = await bookService.createBook({
+      ...req.body,
+      file: fileInfo,
+    });
+
+    res.status(201).json({ message: '📚 Livro criado com sucesso!', data: newBook });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao criar o livro', error: error.message });
   }
 };
 
