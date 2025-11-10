@@ -1,0 +1,42 @@
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches:
+      - main   
+
+jobs:
+  deploy:
+    name: Deploy to Cloud Run
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout do código
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      # 2️⃣ Autenticação com o Google Cloud
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      # 3️⃣ Configura o projeto e autenticação do SDK
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure gcloud project
+        run: gcloud config set project ${{ steps.auth.outputs.project_id }}
+
+      # 4️⃣ Build e deploy no Cloud Run
+      - name: Deploy to Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ secrets.SERVICE_NAME }}               
+          region: ${{ secrets.SERVICE_REGION }}          
+          source: .                             
+          env_vars: |
+            GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}
+            GCP_BUCKET_NAME=${{ secrets.GCP_BUCKET_NAME }}
+            MONGO_URI=${{ secrets.MONGO_URI }}       
